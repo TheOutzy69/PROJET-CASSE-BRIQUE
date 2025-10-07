@@ -7,8 +7,8 @@ Objectif : Créer un systéme fonctionnel pour l'interface utilisateur
 
 import tkinter as tk
 from BOX import BOX
-
-
+from Ball import Ball
+from Paddle import Paddle
 class App(tk.Tk):
     
     def __init__(self) :
@@ -44,9 +44,17 @@ class App(tk.Tk):
         self.gamespace = tk.Canvas(self, height=800, width=1200, bg='black')
         self.gamespace.pack()
 
+        for j in range(3):
+            for i in range(10):
+                Boite = BOX(self.gamespace, 120*i, 50*j)
+                Boite.création()
         
-        Boite = BOX(self.gamespace, 0, 0)
-        Boite.création()
+        boule = Ball(self.gamespace, 585, 600)
+        boule.création()
+
+        palet = Paddle(self.gamespace, 550, 750)
+        palet.création()
+        
         
         
         

@@ -12,4 +12,4 @@ class BOX:
         self.__y = y   
 
     def création(self):
-        self.__rectangle = self.__canvas.create_rectangle(self.__x, self.__y, self.__x + 50, self.__y + 20, fill='red')
+        self.__rectangle = self.__canvas.create_rectangle(self.__x, self.__y, self.__x + 120, self.__y + 50, fill='red', outline='white', width=2)

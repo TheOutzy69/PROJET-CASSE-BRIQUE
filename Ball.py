@@ -7,28 +7,14 @@ Objectif : Créer un systéme fonctionnel pour la balle
 
 class Ball:
     
-    def __init__(self, witdh, height, color) :
-        self.__witdh = witdh
-        self.__height = height
-        self.__color = color
-        self.__lifePoints = 5
+    def __init__(self, canvas, x, y):
+        self.__canvas = canvas
+        self.__x = x
+        self.__y = y
     
-    def getSize(self) :
+    def création(self):
+        self.__circle = self.__canvas.create_oval(self.__x, self.__y, self.__x + 30, self.__y + 30, fill='white', outline='blue', width=2)
         
-        return self.__height,self.__witdh
-    
-    def getColor(self) :
-        
-        return self.__color
-    
-    def manageLifePoints(self, sub) :
-        if sub :
-            self.__lifePoints -= 1
-        else :
-            self.__lifePoints += 1
-    
-    def getLifePoints(self) :
-        return self.__lifePoints 
     
 
     
