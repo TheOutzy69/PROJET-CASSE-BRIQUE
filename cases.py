@@ -5,7 +5,7 @@ Date : 07/10/2025
 Objectif : Créer les cases du casse brique
 """
 
-class BOX(self):
+class BOX:
     def __init__(self, x, y, width, height, color):
         self.__x = x
         self.__y = y
