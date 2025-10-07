@@ -22,4 +22,3 @@ class Paddle:
             if self.__x + self.__width/2 < int(self.__canvas['width'])-self.__width/2:
                 self.__canvas.move(self.__id, 20, 0)
                 self.__x += 20
-            
