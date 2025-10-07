@@ -21,11 +21,13 @@ class App(tk.Tk):
     
     def createWidgets(self) :
         
-        self.playButton = tk.Button(text="Start Game")
-        self.playButton.pack()
+        self.playButton = tk.Button(text= "Start Game", width = 20, height = 2)
+        self.playButton.place(relx=0.5, rely=0.4, anchor="center")
         
-        self.settingsButton = tk.Button(text="Settings")
-        self.settingsButton.pack()
+        self.settingsButton = tk.Button(text="Settings", width = 20, height = 2)
+        self.settingsButton.place(relx=0.5, rely=0.5, anchor="center")
         
-        self.quitButton = tk.Button(text="Quit", command=quit)
-        self.quitButton.pack()
+        self.quitButton = tk.Button(text="Quit", command=quit, width = 20, height = 2)
+        self.quitButton.place(relx=0.5, rely=0.6, anchor="center")
+          
+    
