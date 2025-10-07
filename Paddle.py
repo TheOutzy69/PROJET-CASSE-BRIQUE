@@ -1,24 +1,25 @@
 class Paddle:
     def __init__(self, canvas, x, y):
-        self.canvas = canvas
-        self.x = x
-        self.y = y
-        self.width = 100
-        self.height = 20
-        self.color = 'blue'
-        self.id = None
+        self.__canvas = canvas
+        self.__x = x
+        self.__y = y
+        self.__width = 100
+        self.__height = 20
+        self.__color = 'blue'
+        self.__id = None
 
     def création(self):
-        self.id = self.canvas.create_rectangle(self.x, self.y, self.x + self.width, self.y + self.height, fill=self.color)
+        self.__id = self.__canvas.create_rectangle(self.__x, self.__y, self.__x + self.__width, self.__y + self.__height, fill=self.__color)
 
     def move_left(self, event):
         if event.keysym == 'Left':
-            if self.x > 0:
-                self.x -= 20
-                self.canvas.move(self.id, -20, 0)
+            if self.__x - self.__width/2 > 0 - self.__width/2:
+                self.__canvas.move(self.__id, -20, 0)
+                self.__x -= 20
             
     def move_right(self, event):
         if event.keysym == 'Right':
-            if self.x + self.width < int(self.canvas['width']):
-                self.x += 20
-                self.canvas.move(self.id, 20, 0)
+            if self.__x + self.__width/2 < int(self.__canvas['width'])-self.__width/2:
+                self.__canvas.move(self.__id, 20, 0)
+                self.__x += 20
+            
