@@ -28,4 +28,7 @@ class Ball:
             self.__lifePoints += 1
     
     def getLifePoints(self) :
-        return self.__lifePoints
+        return self.__lifePoints 
+    
+
+    

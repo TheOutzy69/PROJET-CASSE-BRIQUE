@@ -6,7 +6,8 @@ Objectif : Créer un systéme fonctionnel pour l'interface utilisateur
 """
 
 import tkinter as tk
-
+import BOX
+import Ball
 
 class App(tk.Tk):
     
@@ -30,6 +31,9 @@ class App(tk.Tk):
         self.quitButton = tk.Button(text="Quit", command=quit)
         self.quitButton.pack(side='bottom')
 
+    
+    
+    
     def playGame(self):
         #for element in self.winfo_children():
         #   element.destroy()
@@ -37,8 +41,10 @@ class App(tk.Tk):
         self.playButton.destroy()
         self.settingsButton.destroy()
 
-        gamespace = tk.Canvas(self, height=800, width=1200, bg='black')
-        gamespace.pack()
+        self.gamespace = tk.Canvas(self, height=800, width=1200, bg='black')
+        self.gamespace.pack()
+        box = BOX(self.gamespace, 100, 100, 50, 50, 'red')
+        box.create()
         
         
         
