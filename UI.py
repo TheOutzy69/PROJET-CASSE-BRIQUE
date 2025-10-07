@@ -6,8 +6,8 @@ Objectif : Créer un systéme fonctionnel pour l'interface utilisateur
 """
 
 import tkinter as tk
-import BOX
-import Ball
+from BOX import BOX
+
 
 class App(tk.Tk):
     
@@ -43,8 +43,10 @@ class App(tk.Tk):
 
         self.gamespace = tk.Canvas(self, height=800, width=1200, bg='black')
         self.gamespace.pack()
-        box = BOX(self.gamespace, 100, 100, 50, 50, 'red')
-        box.create()
+
+        
+        Boite = BOX(self.gamespace, 0, 0)
+        Boite.création()
         
         
         

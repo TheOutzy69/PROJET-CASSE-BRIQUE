@@ -6,16 +6,10 @@ Objectif : Créer les cases du casse brique
 """
 
 class BOX:
-    def __init__(self, canvas, x1, y1, x2, y2, color):
+    def __init__(self, canvas, x, y):
         self.__canvas = canvas
-        self.__id = canvas.create_rectangle(x1, y1, x2, y2, fill=color)
-        self.__alive = True 
-    
-    def destroy(self):
-        if self.__alive:
-            self.canvas.delete(self.id)
-            self.__alive = False
+        self.__x = x
+        self.__y = y   
 
-    def position(self):
-        return self.canvas.coords(self.id)
-    
+    def création(self):
+        self.__rectangle = self.__canvas.create_rectangle(self.__x, self.__y, self.__x + 50, self.__y + 20, fill='red')
