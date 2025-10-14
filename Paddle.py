@@ -22,3 +22,15 @@ class Paddle:
             if self.__x + self.__width/2 < int(self.__canvas['width'])-self.__width/2:
                 self.__canvas.move(self.__id, 20, 0)
                 self.__x += 20
+
+
+    def move(self, dx):
+        new_x = self.__x + dx
+        canvas_width = int(self.__canvas['width'])
+        if 0 <= new_x <= canvas_width - self.__width:
+            self.__canvas.move(self.__id, dx, 0)
+            self.__x = new_x
+
+
+    def getPos(self):
+        return self.__canvas.coords(self.__id)

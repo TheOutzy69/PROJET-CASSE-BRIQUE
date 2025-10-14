@@ -61,4 +61,7 @@ class Ball:
                                               self.__y+self.__rayon)
         
         self.__canvas.after(20,self.move)
+
+    def getPos(self):
+        return self.__canvas.coords(self.__id)
     
