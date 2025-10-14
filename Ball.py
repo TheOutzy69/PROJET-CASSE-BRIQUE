@@ -8,7 +8,7 @@ import math,random
 
 class Ball:
     
-    def __init__(self,canvas,rayon,color,width,height,speed, paddle, brick) :
+    def __init__(self,canvas,rayon,color,width,height,speed, paddle, brick,livesLabel, scoreLabel) :
         self.__canvas = canvas
         self.__color = color
         self.__rayon = rayon
@@ -23,6 +23,9 @@ class Ball:
         self.__paddle = paddle
         self.__bricks = brick
         self.__life = 5
+        self.__score = 0
+        self.__livesLabel = livesLabel
+        self.__scoreLabel = scoreLabel
         
     def création(self):
         self.__id = self.__canvas.create_oval(self.__x-self.__rayon,
@@ -50,6 +53,10 @@ class Ball:
             self.__life -= 1
             self.__x = self.__width/2
             self.__y = self.__height/2
+            self.__livesLabel.config(text="Lives : " + str(self.__life))
+            if self.__life == 0:
+                self.__canvas.create_text(self.__width/2, self.__height/2, text="Game Over", fill="red", font=("Arial", 50))
+                return
         
         #Rebond en haut
         elif self.__y - self.__rayon + self.__dY < 0 :
@@ -93,24 +100,32 @@ class Ball:
                     self.__y = by1 - self.__rayon
                     self.__dY = -self.__dY
                     brick.destroy()
+                    self.__score += 10
+                    self.__scoreLabel.config(text="Score : " + str(self.__score))
                     
                 # Bounce on left face of brick
                 elif (bx1 - self.__rayon <= self.__x <= bx1) and (by1 <= self.__y <= by2) and (self.__dX > 0):
                     self.__x = bx1 - self.__rayon
                     self.__dX = -self.__dX
                     brick.destroy()
+                    self.__score += 10
+                    self.__scoreLabel.config(text="Score : " + str(self.__score))
                     
                 # Bounce on right face of brick
                 elif (bx2 <= self.__x <= bx2 + self.__rayon) and (by1 <= self.__y <= by2) and (self.__dX < 0):
                     self.__x = bx2 + self.__rayon
                     self.__dX = -self.__dX
                     brick.destroy()
+                    self.__score += 10
+                    self.__scoreLabel.config(text="Score : " + str(self.__score))
                     
                 # Bounce on bottom face of brick
                 elif (by2 <= self.__y <= by2 + self.__rayon) and (bx1 <= self.__x <= bx2) and (self.__dY < 0):
                     self.__y = by2 + self.__rayon
                     self.__dY = -self.__dY
                     brick.destroy()
+                    self.__score += 10
+                    self.__scoreLabel.config(text="Score : " + str(self.__score))
 
         self.__canvas.coords(self.__id,self.__x-self.__rayon,
                                               self.__y-self.__rayon,

@@ -27,9 +27,7 @@ class App(tk.Tk):
         self.__score = 0
         self.__bricks = []
         
-        self.createWidgets()
-        
-        
+        self.createWidgets() 
    
     def createWidgets(self) :
         
@@ -49,12 +47,7 @@ class App(tk.Tk):
         self.scoreLabel.pack()
         
         self.livesLabel = tk.Label(text="Lives : " + str(self.__lives))
-        self.livesLabel.pack()
-    
-    def update(self):
-        self.scoreLabel.config(text="Score : " + str(self.__score))
-        self.livesLabel.config(text="Lives : " + str(self.__lives))
-        
+        self.livesLabel.pack()      
 
     def playGame(self):
         
@@ -73,12 +66,9 @@ class App(tk.Tk):
         
         palet = Paddle(self.gamespace, 550, 750)
         palet.création()
-        boule = Ball(self.gamespace, 10, 'white', self.__width, self.__height, 10, palet, self.__bricks)
+        boule = Ball(self.gamespace, 10, 'white', self.__width, self.__height, 10, palet, self.__bricks,self.livesLabel,self.scoreLabel)
         boule.création()
         boule.move()
-        
-        
-        
         
         self.gamespace.bind_all('<KeyPress-Left>', palet.move_left)
         self.gamespace.bind_all('<KeyPress-Right>', palet.move_right)
