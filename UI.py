@@ -18,7 +18,7 @@ class App(tk.Tk):
         super().__init__()
         
         self.title("Casse-brique")
-        self.geometry("1200x865+200+0")
+        self.geometry("1200x900+200+0")
 
         self.__width = 1200
         self.__height = 800
@@ -42,6 +42,7 @@ class App(tk.Tk):
         self.quitButton = tk.Button(text="Quit", command=quit)
         self.quitButton.pack(side='bottom')
 
+        
     def createLabel(self):
         
         self.scoreLabel = tk.Label(text="Score : " + str(self.__score))
@@ -51,7 +52,6 @@ class App(tk.Tk):
         self.livesLabel.pack()
     
     def update(self):
-        
         self.scoreLabel.config(text="Score : " + str(self.__score))
         self.livesLabel.config(text="Lives : " + str(self.__lives))
         
@@ -73,11 +73,12 @@ class App(tk.Tk):
         
         palet = Paddle(self.gamespace, 550, 750)
         palet.création()
+        boule = Ball(self.gamespace, 10, 'white', self.__width, self.__height, 10, palet, self.__bricks)
+        boule.création()
+        boule.move()
         
-        boule2 = Ball(self.gamespace, 10, 'white', self.__width, self.__height, 10, palet, self.__bricks)
-        boule2.création()
-        boule2.move()
-
+        
+        
         
         self.gamespace.bind_all('<KeyPress-Left>', palet.move_left)
         self.gamespace.bind_all('<KeyPress-Right>', palet.move_right)

@@ -22,6 +22,7 @@ class Ball:
         self.__id = None
         self.__paddle = paddle
         self.__bricks = brick
+        self.__life = 5
         
     def création(self):
         self.__id = self.__canvas.create_oval(self.__x-self.__rayon,
@@ -46,6 +47,9 @@ class Ball:
         elif self.__y + self.__rayon + self.__dY > self.__height :
             self.__y = 2*(self.__height-self.__rayon)-self.__y
             self.__dY = -self.__dY
+            self.__life -= 1
+            self.__x = self.__width/2
+            self.__y = self.__height/2
         
         #Rebond en haut
         elif self.__y - self.__rayon + self.__dY < 0 :
@@ -118,5 +122,6 @@ class Ball:
     def getPos(self):
         return self.__canvas.coords(self.__id)
     
-
+    def getLife(self):
+        return self.__life
     

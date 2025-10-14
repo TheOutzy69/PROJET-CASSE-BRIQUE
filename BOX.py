@@ -12,6 +12,7 @@ class Box:
         self.__x = x
         self.__y = y
         self.__alive = True
+        self.__score = 0
     
     def création(self):
         self.__rectangle = self.__canvas.create_rectangle(self.__x, self.__y, self.__x + 120, self.__y + 50, fill='red', outline='white', width=2)
@@ -23,4 +24,5 @@ class Box:
         if self.__alive:
             self.__canvas.delete(self.__rectangle)
             self.__alive = False
-            
+        self.__score += 10
+    
