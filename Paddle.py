@@ -8,7 +8,7 @@ class Paddle:
         self.__color = 'blue'
         self.__id = None
 
-    def création(self):
+    def creation(self):
         self.__id = self.__canvas.create_rectangle(self.__x, self.__y, self.__x + self.__width, self.__y + self.__height, fill=self.__color)
 
     def move_left(self, event):

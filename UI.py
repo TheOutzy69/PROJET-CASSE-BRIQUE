@@ -36,10 +36,11 @@ class App(tk.Tk):
         
         self.settingsButton = tk.Button(text="Settings")
         self.settingsButton.pack()
+        self.playagain = tk.Button(text="Play Again", command= self.resetGame)
         
         self.quitButton = tk.Button(text="Quit", command=quit)
         self.quitButton.pack(side='bottom')
-
+        self.playagain.pack(side='bottom')
         
     def createLabel(self):
         
@@ -65,9 +66,9 @@ class App(tk.Tk):
                 self.__bricks.append(Boite)
         
         palet = Paddle(self.gamespace, 550, 750)
-        palet.création()
+        palet.creation()
         boule = Ball(self.gamespace, 10, 'white', self.__width, self.__height, 10, palet, self.__bricks,self.livesLabel,self.scoreLabel)
-        boule.création()
+        boule.creation()
         boule.move()
         
         self.gamespace.bind_all('<KeyPress-Left>', palet.move_left)
@@ -75,7 +76,14 @@ class App(tk.Tk):
         self.gamespace.bind('<Motion>', lambda event: palet.move(event.x - ((palet.getPos()[0] + palet.getPos()[2]) / 2)))
         
         
-        
+    def resetGame(self):
+        self.gamespace.destroy()
+        self.scoreLabel.destroy()
+        self.livesLabel.destroy()
+        self.__bricks.clear()
+        self.__lives = 5
+        self.__score = 0
+        self.playGame()  
         
         
         

@@ -27,7 +27,7 @@ class Ball:
         self.__livesLabel = livesLabel
         self.__scoreLabel = scoreLabel
         
-    def création(self):
+    def creation(self):
         self.__id = self.__canvas.create_oval(self.__x-self.__rayon,
                                               self.__y-self.__rayon,
                                               self.__x+self.__rayon,
