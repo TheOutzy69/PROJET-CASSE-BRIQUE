@@ -24,7 +24,8 @@ class App(tk.Tk):
         self.__bricks = []
         self.__lives = 5
         self.__score = 0
-
+        self.__width = 1200
+        self.__height = 800
 
         
         self.createWidgets()
@@ -50,7 +51,7 @@ class App(tk.Tk):
         #self.pack_propagate(0)
         self.playButton.destroy()
         self.settingsButton.destroy()
-        self.gamespace = tk.Canvas(self, height=800, width=1200, bg='black')
+        self.gamespace = tk.Canvas(self, height = self.__height, width = self.__width, bg='black')
         self.gamespace.pack()
 
         for j in range(5):
@@ -59,7 +60,7 @@ class App(tk.Tk):
                 Boite.création()
                 self.__bricks.append(Boite)
         
-        boule2 = Ball(self.gamespace, 10, 'white', 1200, 800, 15)
+        boule2 = Ball(self.gamespace, 10, 'white', self.__width, self.__height, 15)
         boule2.création()
         boule2.move()
         #boule = Ball(self.gamespace, 585, 600)
