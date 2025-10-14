@@ -18,7 +18,7 @@ class App(tk.Tk):
         super().__init__()
         
         self.title("Casse-brique")
-        self.geometry("1200x800+200+50")
+        self.geometry("1200x865+200+100")
 
 
         self.__bricks = []
@@ -33,6 +33,7 @@ class App(tk.Tk):
         self.__score = 0
         
         self.createWidgets()
+        
         
    
     def createWidgets(self) :
@@ -49,10 +50,10 @@ class App(tk.Tk):
     def createLabel(self):
         
         self.scoreLabel = tk.Label(text="Score : " + str(self.__score))
-        self.scoreLabel.pack(side="top")
+        self.scoreLabel.pack()
         
         self.livesLabel = tk.Label(text="Lives : " + str(self.__lives))
-        self.livesLabel.pack(side="top")
+        self.livesLabel.pack()
     
     def update(self):
         
@@ -64,9 +65,10 @@ class App(tk.Tk):
         
         self.playButton.destroy()
         self.settingsButton.destroy()
+        
         self.gamespace = tk.Canvas(self, height = self.__height, width = self.__width, bg='black')
         self.gamespace.pack()
-
+        self.createLabel()
         for j in range(5):
             for i in range(10):
                 Boite = Box(self.gamespace, 120*i, 50*j)
