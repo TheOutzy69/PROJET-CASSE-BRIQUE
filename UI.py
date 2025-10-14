@@ -46,7 +46,7 @@ class App(tk.Tk):
         self.gamespace = tk.Canvas(self, height=800, width=1200, bg='black')
         self.gamespace.pack()
 
-        for j in range(3):
+        for j in range(5):
             for i in range(10):
                 Boite = BOX(self.gamespace, 120*i, 50*j)
                 Boite.création()
