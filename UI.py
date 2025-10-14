@@ -9,7 +9,7 @@ import tkinter as tk
 from BOX import BOX
 from Ball import Ball
 from Paddle import Paddle
-from ballem import Ballem
+
 
 class App(tk.Tk):
     
@@ -51,7 +51,7 @@ class App(tk.Tk):
                 Boite = BOX(self.gamespace, 120*i, 50*j)
                 Boite.création()
         
-        boule2 = Ballem(self.gamespace, 10, 'white', 1200, 800, 10)
+        boule2 = Ball(self.gamespace, 10, 'white', 1200, 800, 20)
         boule2.création()
         boule2.move()
         #boule = Ball(self.gamespace, 585, 600)
