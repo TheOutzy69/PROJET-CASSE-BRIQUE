@@ -32,4 +32,4 @@ class Paddle:
 
 
     def getPos(self):
-        return self.__canvas.coords(self.__id)
+        return self.__canvas.coords(self.__id) 
