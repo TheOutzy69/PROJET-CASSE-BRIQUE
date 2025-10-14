@@ -81,7 +81,6 @@ class App(tk.Tk):
         
         self.gamespace.bind_all('<KeyPress-Left>', palet.move_left)
         self.gamespace.bind_all('<KeyPress-Right>', palet.move_right)
-        
         self.gamespace.bind('<Motion>', lambda event: palet.move(event.x - ((palet.getPos()[0] + palet.getPos()[2]) / 2)))
         
         

@@ -23,4 +23,4 @@ class Box:
         if self.__alive:
             self.__canvas.delete(self.__rectangle)
             self.__alive = False
-    
+            
