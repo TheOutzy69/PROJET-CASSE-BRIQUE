@@ -20,17 +20,12 @@ class App(tk.Tk):
         self.title("Casse-brique")
         self.geometry("1200x865+200+0")
 
-
-        self.__bricks = []
-        self.__lives = 5
-        self.__score = 0
         self.__width = 1200
         self.__height = 800
 
-        
-        self.__bricks = []
         self.__lives = 5
         self.__score = 0
+        self.__bricks = []
         
         self.createWidgets()
         
@@ -69,18 +64,21 @@ class App(tk.Tk):
         self.gamespace = tk.Canvas(self, height = self.__height, width = self.__width, bg='black')
         self.gamespace.pack()
         self.createLabel()
+        
         for j in range(5):
             for i in range(10):
                 Boite = Box(self.gamespace, 120*i, 50*j)
                 Boite.création()
                 self.__bricks.append(Boite)
         
-        boule2 = Ball(self.gamespace, 10, 'white', self.__width, self.__height, 15)
+        palet = Paddle(self.gamespace, 550, 750)
+        palet.création()
+        
+        boule2 = Ball(self.gamespace, 10, 'white', self.__width, self.__height, 10, palet, self.__bricks)
         boule2.création()
         boule2.move()
 
-        palet = Paddle(self.gamespace, 550, 750)
-        palet.création()
+        
         self.gamespace.bind_all('<KeyPress-Left>', palet.move_left)
         self.gamespace.bind_all('<KeyPress-Right>', palet.move_right)
         
