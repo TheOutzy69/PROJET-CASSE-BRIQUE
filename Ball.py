@@ -86,22 +86,20 @@ class Ball:
                 if (by1 <= self.__y + self.__rayon <= by2) and (bx1 <= self.__x <= bx2) and (self.__dY > 0):
                     self.__y = by1 - self.__rayon
                     self.__dY = -self.__dY
-                    #box_pos.destroy()
+                    
                 # Bounce on left face of brick
                 elif (bx1 - self.__rayon <= self.__x <= bx1) and (by1 <= self.__y <= by2) and (self.__dX > 0):
                     self.__x = bx1 - self.__rayon
                     self.__dX = -self.__dX
-                    #box_pos.destroy()
+                    
                 # Bounce on right face of brick
                 elif (bx2 <= self.__x <= bx2 + self.__rayon) and (by1 <= self.__y <= by2) and (self.__dX < 0):
                     self.__x = bx2 + self.__rayon
                     self.__dX = -self.__dX
-                    #box_pos.destroy()
                 # Bounce on bottom face of brick
                 elif (by2 <= self.__y <= by2 + self.__rayon) and (bx1 <= self.__x <= bx2) and (self.__dY < 0):
                     self.__y = by2 + self.__rayon
                     self.__dY = -self.__dY
-                    #box_pos.destroy()
                 
 
 
