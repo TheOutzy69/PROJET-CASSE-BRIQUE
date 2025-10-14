@@ -18,7 +18,7 @@ class App(tk.Tk):
         super().__init__()
         
         self.title("Casse-brique")
-        self.geometry("1200x865+200+100")
+        self.geometry("1200x865+200+0")
 
 
         self.__bricks = []
