@@ -6,7 +6,7 @@ Objectif : Créer un systéme fonctionnel pour l'interface utilisateur
 """
 
 import tkinter as tk
-from BOX import Box
+from BOX import BOX
 from Ball import Ball
 from Paddle import Paddle
 
@@ -18,23 +18,14 @@ class App(tk.Tk):
         super().__init__()
         
         self.title("Casse-brique")
-        self.geometry("1200x800+200+50")
-
-
-        self.__bricks = []
-        self.__lives = 5
-        self.__score = 0
-        self.__width = 1200
-        self.__height = 800
-
+        self.geometry("1200x800")
         
         self.__bricks = []
         self.__lives = 5
         self.__score = 0
         
         self.createWidgets()
-        
-   
+    
     def createWidgets(self) :
         
         self.playButton = tk.Button(text="Start Game", command= self.playGame)
@@ -64,16 +55,18 @@ class App(tk.Tk):
         
         self.playButton.destroy()
         self.settingsButton.destroy()
-        self.gamespace = tk.Canvas(self, height = self.__height, width = self.__width, bg='black')
+        
+        self.createLabel()
+
+        self.gamespace = tk.Canvas(self, height=800, width=1200, bg='black')
         self.gamespace.pack()
 
         for j in range(5):
             for i in range(10):
-                Boite = Box(self.gamespace, 120*i, 50*j)
+                Boite = BOX(self.gamespace, 120*i, 50*j)
                 Boite.création()
-                self.__bricks.append(Boite)
         
-        boule2 = Ball(self.gamespace, 10, 'white', self.__width, self.__height, 15)
+        boule2 = Ball(self.gamespace, 10, 'white', 1200, 800, 20)
         boule2.création()
         boule2.move()
 
@@ -81,10 +74,6 @@ class App(tk.Tk):
         palet.création()
         self.gamespace.bind_all('<KeyPress-Left>', palet.move_left)
         self.gamespace.bind_all('<KeyPress-Right>', palet.move_right)
-        
-        self.gamespace.bind('<Motion>', lambda event: palet.move(event.x - ((palet.getPos()[0] + palet.getPos()[2]) / 2)))
-        
-        
         
         
         

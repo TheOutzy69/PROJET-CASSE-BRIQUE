@@ -20,7 +20,6 @@ class Ball:
         self.__angle = random.uniform(0,2*math.pi)
         self.__dX = speed*math.cos(self.__angle)
         self.__dY = speed*math.cos(self.__angle)
-        self.__lifePoints = 5
         self.__id = None
     
     def création(self):
