@@ -20,18 +20,12 @@ class App(tk.Tk):
         self.title("Casse-brique")
         self.geometry("1200x865+200+0")
 
-
-        
-        self.__lives = 5
-        self.__score = 0
         self.__width = 1200
         self.__height = 800
 
-        
-        self.__bricks = []
-        self.__PosBricks = []
         self.__lives = 5
         self.__score = 0
+        self.__bricks = []
         
         self.createWidgets()
         
@@ -76,18 +70,11 @@ class App(tk.Tk):
                 Boite = Box(self.gamespace, 120*i, 50*j)
                 Boite.création()
                 self.__bricks.append(Boite)
-                self.__PosBricks.append((120*i, 50*j, 120*i + 120, 50*j + 50))
-
-                
-                
-        
-        #print((self.__bricks))
         
         palet = Paddle(self.gamespace, 550, 750)
         palet.création()
-        #print(palet.getPos())
-        #print(self.__PosBricks)
-        boule2 = Ball(self.gamespace, 10, 'white', self.__width, self.__height, 10, palet, self.__PosBricks)
+        
+        boule2 = Ball(self.gamespace, 10, 'white', self.__width, self.__height, 10, palet, self.__bricks)
         boule2.création()
         boule2.move()
 

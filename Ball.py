@@ -16,13 +16,13 @@ class Ball:
         self.__height = height
         self.__x = self.__width/2
         self.__y = self.__height/2
-        self.__speed = speed
         self.__angle = random.uniform(0,2*math.pi)
         self.__dX = speed*math.cos(self.__angle)
         self.__dY = speed*math.cos(self.__angle)
         self.__id = None
         self.__paddle = paddle
-        self.__brickpos = brick
+        self.__bricks = brick
+        
     def création(self):
         self.__id = self.__canvas.create_oval(self.__x-self.__rayon,
                                               self.__y-self.__rayon,
@@ -78,30 +78,35 @@ class Ball:
                 self.__dY = -self.__dY
         
         #REBOND BRIQUES
-        for coordi in self.__brickpos:
-            box_pos = coordi
-            if box_pos:
-                bx1, by1, bx2, by2 = box_pos
+        
+        for brick in self.__bricks:
+            brickPos = brick.getPos()
+
+            if brickPos:
+                bx1, by1, bx2, by2 = brickPos
                 # Bounce on top face of brick
                 if (by1 <= self.__y + self.__rayon <= by2) and (bx1 <= self.__x <= bx2) and (self.__dY > 0):
                     self.__y = by1 - self.__rayon
                     self.__dY = -self.__dY
+                    brick.destroy()
                     
                 # Bounce on left face of brick
                 elif (bx1 - self.__rayon <= self.__x <= bx1) and (by1 <= self.__y <= by2) and (self.__dX > 0):
                     self.__x = bx1 - self.__rayon
                     self.__dX = -self.__dX
+                    brick.destroy()
                     
                 # Bounce on right face of brick
                 elif (bx2 <= self.__x <= bx2 + self.__rayon) and (by1 <= self.__y <= by2) and (self.__dX < 0):
                     self.__x = bx2 + self.__rayon
                     self.__dX = -self.__dX
+                    brick.destroy()
+                    
                 # Bounce on bottom face of brick
                 elif (by2 <= self.__y <= by2 + self.__rayon) and (bx1 <= self.__x <= bx2) and (self.__dY < 0):
                     self.__y = by2 + self.__rayon
                     self.__dY = -self.__dY
-                
-
+                    brick.destroy()
 
         self.__canvas.coords(self.__id,self.__x-self.__rayon,
                                               self.__y-self.__rayon,

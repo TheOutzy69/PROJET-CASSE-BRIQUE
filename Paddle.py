@@ -23,7 +23,6 @@ class Paddle:
                 self.__canvas.move(self.__id, 20, 0)
                 self.__x += 20
 
-
     def move(self, dx):
         new_x = self.__x + dx
         canvas_width = int(self.__canvas['width'])
