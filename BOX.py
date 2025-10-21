@@ -20,19 +20,22 @@ class Box:
     
     """
     
-    def __init__(self, canvas, x, y):
+    def __init__(self, canvas, x, y, life, colors):
         
         self.__canvas = canvas
         self.__x = x
         self.__y = y
-        self.__alive = True
-        self.__score = 0
+        self.__alive = life
+        self.__colors = colors
     
     def création(self):
         """
         Permet de créer une brique
         """
-        self.__rectangle = self.__canvas.create_rectangle(self.__x, self.__y, self.__x + 120, self.__y + 50, fill='red', outline='white', width=2)
+        self.__rectangle = self.__canvas.create_rectangle(self.__x, self.__y, self.__x + 120,
+                                                          self.__y + 50,
+                                                          fill = self.__colors[self.__alive-1],
+                                                          outline = 'white', width = 2 )
 
     def getPos(self):
         """
@@ -44,10 +47,13 @@ class Box:
         """
         Permet de détruire la brique
         """
-        if self.__alive:
             
-            self.__canvas.delete(self.__rectangle)
-            self.__alive = False
-            
-        self.__score += 10
-    
+        self.__canvas.delete(self.__rectangle)
+        self.__alive -= 1
+        self.__rectangle = self.__canvas.create_rectangle(self.__x, self.__y, self.__x + 120,
+                                                      self.__y + 50,
+                                                      fill = self.__colors[self.__alive-1],
+                                                      outline = 'white', width = 2 )
+
+        if self.__alive == 0 :
+            self.__canvas.delete(self.__rectangle)   

@@ -9,6 +9,7 @@ import tkinter as tk
 from BOX import Box
 from Ball import Ball
 from Paddle import Paddle
+from random import randint
 
 
 class App(tk.Tk):
@@ -104,9 +105,13 @@ class App(tk.Tk):
         
         #Création et organisation des briques
         #Ici une zone de 5*10 briques de 120*50 pixels
+        
+        colors = ['red','orange','blue']
+        
         for j in range(5) :
             for i in range(10) :
-                Boite = Box(self.gamespace, 120*i, 50*j)
+                life = randint(1,3)
+                Boite = Box(self.gamespace, 120*i, 50*j,life,colors)
                 Boite.création()
                 self.__bricks.append(Boite)
                 
