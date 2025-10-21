@@ -7,6 +7,7 @@ Objectif : Créer un systéme fonctionnel pour la balle
 import math,random
 
 class Ball:
+    
     """
     Classe qui permet de gérer la balle
     
