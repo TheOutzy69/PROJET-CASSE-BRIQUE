@@ -9,7 +9,7 @@ import tkinter as tk
 from BOX import Box
 from Ball import Ball
 from Paddle import Paddle
-
+import Score_Handler as sh
 
 class App(tk.Tk):
     """
@@ -31,6 +31,8 @@ class App(tk.Tk):
         """Initialisation des variables de jeu"""
         self.__lives = 5
         self.__score = 0
+        self.__highest = sh.get_highest()
+        self.__average = sh.get_average()
         self.__bricks = []
         
         """Création des premiers widgets"""
@@ -62,11 +64,17 @@ class App(tk.Tk):
         """
         Permet d'afficher les valeurs de score et vie en bas de fenêtre
         """
-        self.scoreLabel = tk.Label(text="Score : " + str(self.__score))
-        self.scoreLabel.pack()
+        self.scoreLabel = tk.Label(text="Score : "  + str(self.__score))
+        self.scoreLabel.pack(side='left')
         
-        self.livesLabel = tk.Label(text="Lives : " + str(self.__lives))
-        self.livesLabel.pack()   
+        self.livesLabel = tk.Label(text="Lives : "  + str(self.__lives))
+        self.livesLabel.pack(side='left')
+
+        self.HighestLabel = tk.Label(text="Highest Score: " + "\n"  + str(self.__highest))
+        self.HighestLabel.pack(side='right')
+
+        self.AvLabel = tk.Label(text="Average score \n on last 10 rounds: " + "\n" + str(self.__average))
+        self.AvLabel.pack(side='right')
 
     def rules_window(self) :
         
@@ -134,9 +142,13 @@ class App(tk.Tk):
         self.gamespace.destroy()
         self.scoreLabel.destroy()
         self.livesLabel.destroy()
+        self.HighestLabel.destroy()
+        self.AvLabel.destroy()
         self.__bricks.clear()
         self.__lives = 5
         self.__score = 0
+        self.__highest = sh.get_highest()
+        self.__average = sh.get_average()
         self.playGame()  
         
         
