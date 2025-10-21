@@ -12,6 +12,9 @@ from Paddle import Paddle
 
 
 class App(tk.Tk):
+    """
+    Classe définissant la fenêtre d'interface qui héberge le jeu.
+    """
     
     def __init__(self) :
         
