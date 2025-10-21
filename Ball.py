@@ -1,8 +1,10 @@
 """
 Projet : Casse-briques
 Auteur : Nallet Hugo et Serveaux Tao
-Date : 07/10/2025
+Date : 07/10/2025 - 21/10/2025
 Objectif : Créer un systéme fonctionnel pour la balle
+Improvements :
+    - Régler le problème de la vitesse qui a tendance à varier à chaque lancement de partie.
 """
 import math,random
 

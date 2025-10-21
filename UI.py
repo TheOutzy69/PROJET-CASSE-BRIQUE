@@ -1,7 +1,7 @@
 """
 Projet : Casse-briques
 Auteur : Nallet Hugo et Serveaux Tao
-Date : 07/10/2025
+Date : 07/10/2025 - 21/10/2025
 Objectif : Créer un systéme fonctionnel pour l'interface utilisateur
 """
 
@@ -48,7 +48,7 @@ class App(tk.Tk):
         self.scoreLabel.pack()
         
         self.livesLabel = tk.Label(text="Lives : " + str(self.__lives))
-        self.livesLabel.pack()      
+        self.livesLabel.pack()   
 
     def playGame(self):
         
@@ -74,7 +74,7 @@ class App(tk.Tk):
         self.gamespace.bind_all('<KeyPress-Left>', palet.move_left)
         self.gamespace.bind_all('<KeyPress-Right>', palet.move_right)
         self.gamespace.bind('<Motion>', lambda event: palet.move(event.x - ((palet.getPos()[0] + palet.getPos()[2]) / 2)))
-        
+
         
                   
     def resetGame(self):

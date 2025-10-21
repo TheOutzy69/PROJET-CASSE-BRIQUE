@@ -1,8 +1,11 @@
 """
 Projet : Casse-briques
 Auteur : Nallet Hugo et Serveaux Tao
-Date : 07/10/2025
+Date : 07/10/2025 - 21/10/2025
 Objectif : Créer les cases du casse brique
+
+Improvements :
+    - Créer des sous-classes pour différents types de briques (par exemple, briques résistantes, briques explosives).
 """
 
 class Box:
