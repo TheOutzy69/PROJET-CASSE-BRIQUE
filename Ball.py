@@ -131,6 +131,12 @@ class Ball:
                                               self.__y-self.__rayon,
                                               self.__x+self.__rayon,
                                               self.__y+self.__rayon)
+        if self.__score == len(self.__bricks)*10:
+            self.__canvas.create_text(self.__width/2, self.__height/2, text="You Win!", fill="green", font=("Arial", 50))
+            return
+        
+        
+        
         self.__canvas.after(20,self.move)
 
 
