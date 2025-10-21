@@ -3,11 +3,9 @@ Projet : Casse-briques
 Auteur : Nallet Hugo et Serveaux Tao
 Date : 07/10/2025 - 21/10/2025
 Objectif : Créer un systéme fonctionnel pour la balle
-Improvements :
-    - Régler le problème de la vitesse qui a tendance à varier à chaque lancement de partie.
-    - Ajout de la loi de descartes
 """
 import math,random
+import Score_Handler as sh
 
 class Ball:
     
@@ -27,10 +25,6 @@ class Ball:
         - LivesLabel : Texte permettant d'afficher les vies
         - ScoreLabel : Texte permettant d'afficher le score
     
-    Sortie :
-    
-        - La balle
-    
     """
     def __init__(self,canvas,rayon,color,width,height,speed, paddle, brick,livesLabel, scoreLabel) :
         
@@ -46,7 +40,7 @@ class Ball:
         #Définission de la vitesse de la balle
         self.__angle = random.uniform(0,2*math.pi)
         self.__dX = speed*math.cos(self.__angle)
-        self.__dY = speed*math.cos(self.__angle)
+        self.__dY = speed*math.sin(self.__angle)
         
         self.__id = None
         
@@ -101,7 +95,7 @@ class Ball:
             if self.__life == 0:
                 
                 self.__canvas.create_text(self.__width/2, self.__height/2, text="Game Over", fill="red", font=("Arial", 50))
-                return
+                return sh.sauvegarder_score(self.__score)
         
         #Rebond en haut
         elif self.__y - self.__rayon + self.__dY < 0 :
@@ -208,7 +202,7 @@ class Ball:
         if self.__score == len(self.__bricks) * 10 :
             
             self.__canvas.create_text(self.__width/2, self.__height/2, text="You Win!", fill="green", font=("Arial", 50))
-            return
+            return sh.sauvegarder_score(self.__score)
         
         
         #Permet d'actualiser la fenêtre apres 20ms
