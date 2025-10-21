@@ -51,7 +51,7 @@ class App(tk.Tk):
         self.quitButton.pack(side='bottom')
         self.playagain.pack(side='bottom')
         
-    def createLabel(self):
+    def createLabel(self) :
         """
         Permet d'afficher les valeurs de score et vie en bas de fenêtre
         """
@@ -61,7 +61,7 @@ class App(tk.Tk):
         self.livesLabel = tk.Label(text="Lives : " + str(self.__lives))
         self.livesLabel.pack()   
 
-    def rules_window(self):
+    def rules_window(self) :
         # Création d'une nouvelle fenêtre Toplevel pour afficher et expliquer les règles
         set_win = tk.Toplevel(self)
         set_win.title("Rules")
@@ -79,37 +79,45 @@ class App(tk.Tk):
         closeButton = tk.Button(set_win, text="Close", command=set_win.destroy)
         closeButton.pack()
 
-    def playGame(self):
+    def playGame(self) :
         """
+        Fonction associée au bouton -Start Game-
         Programme d'affichage et exécution du jeu
         """
-        #On supprime les boutons superflux.
+        #Supprimer les boutons superflux.
         self.playButton.destroy()
         self.rulesButton.destroy()
-        
+        #Création de l'espace du jeu
         self.gamespace = tk.Canvas(self, height = self.__height, width = self.__width, bg='black')
         self.gamespace.pack()
         self.createLabel()
-        
-        for j in range(5):
-            for i in range(10):
+        #Création et organisation des briques
+        #Ici une zone de 5*10 briques de 120*50 pixels
+        for j in range(5) :
+            for i in range(10) :
                 Boite = Box(self.gamespace, 120*i, 50*j)
                 Boite.création()
                 self.__bricks.append(Boite)
+        #Création de la raquette
+        paddle = Paddle(self.gamespace, 550, 750)
+        paddle.creation()
         
-        palet = Paddle(self.gamespace, 550, 750)
-        palet.creation()
-        boule = Ball(self.gamespace, 10, 'white', self.__width, self.__height, 10, palet, self.__bricks,self.livesLabel,self.scoreLabel)
-        boule.creation()
-        boule.move()
-        
-        self.gamespace.bind_all('<KeyPress-Left>', palet.move_left)
-        self.gamespace.bind_all('<KeyPress-Right>', palet.move_right)
-        self.gamespace.bind('<Motion>', lambda event: palet.move(event.x - ((palet.getPos()[0] + palet.getPos()[2]) / 2)))
+        #Création de la balle et lancement des déplacements. 
+        ball = Ball(self.gamespace, 10, 'white', self.__width, self.__height, 10, paddle, self.__bricks,self.livesLabel,self.scoreLabel)
+        ball.creation()
+        ball.move()
+        #Assignation des touches et mouvements souris.
+        self.gamespace.bind_all('<KeyPress-Left>', paddle.move_left)
+        self.gamespace.bind_all('<KeyPress-Right>', paddle.move_right)
+        self.gamespace.bind('<Motion>', lambda event: paddle.move(event.x - ((paddle.getPos()[0] + paddle.getPos()[2]) / 2)))
 
         
-                  
-    def resetGame(self):
+    #Fonction pour relancer le jeu
+    def resetGame(self) :
+        """
+        Fonction associée au bouton -Play Again- 
+        Réinitialise les scores et vies pour relancer le programme de jeu
+        """
         self.gamespace.destroy()
         self.scoreLabel.destroy()
         self.livesLabel.destroy()
