@@ -16,16 +16,20 @@ class App(tk.Tk):
     def __init__(self) :
         
         super().__init__()
+        
         """Initialisation de la fenêtre principale"""
         self.title("Casse-brique")
         self.geometry("1200x900+400+0") #au format 1200x900
+        
         """Format du cadre de jeu"""
         self.__width = 1200
         self.__height = 800
+        
         """Initialisation des variables de jeu"""
         self.__lives = 5
         self.__score = 0
         self.__bricks = []
+        
         """Création des premiers widgets"""
         self.createWidgets() 
    
@@ -62,6 +66,7 @@ class App(tk.Tk):
         self.livesLabel.pack()   
 
     def rules_window(self) :
+        
         # Création d'une nouvelle fenêtre Toplevel pour afficher et expliquer les règles
         set_win = tk.Toplevel(self)
         set_win.title("Rules")
@@ -73,6 +78,7 @@ class App(tk.Tk):
         label4 = tk.Label(set_win, text="Bounce the ball to break all the bricks.")
         label5 = tk.Label(set_win, text="Don't let the ball fall below the paddle.")
         label6 = tk.Label(set_win, text="You have 5 lives. Good luck!")
+        
         for lbl in (label1, label2, label3, label4, label5, label6):
             lbl.pack(pady=5)
 
@@ -87,10 +93,12 @@ class App(tk.Tk):
         #Supprimer les boutons superflux.
         self.playButton.destroy()
         self.rulesButton.destroy()
+        
         #Création de l'espace du jeu
         self.gamespace = tk.Canvas(self, height = self.__height, width = self.__width, bg='black')
         self.gamespace.pack()
         self.createLabel()
+        
         #Création et organisation des briques
         #Ici une zone de 5*10 briques de 120*50 pixels
         for j in range(5) :
@@ -98,6 +106,7 @@ class App(tk.Tk):
                 Boite = Box(self.gamespace, 120*i, 50*j)
                 Boite.création()
                 self.__bricks.append(Boite)
+                
         #Création de la raquette
         paddle = Paddle(self.gamespace, 550, 750)
         paddle.creation()
@@ -106,6 +115,7 @@ class App(tk.Tk):
         ball = Ball(self.gamespace, 10, 'white', self.__width, self.__height, 10, paddle, self.__bricks,self.livesLabel,self.scoreLabel)
         ball.creation()
         ball.move()
+        
         #Assignation des touches et mouvements souris.
         self.gamespace.bind_all('<KeyPress-Left>', paddle.move_left)
         self.gamespace.bind_all('<KeyPress-Right>', paddle.move_right)

@@ -10,6 +10,7 @@ Improvements :
 import math,random
 
 class Ball:
+    
     """
     Classe qui permet de gérer la balle
     
