@@ -18,7 +18,7 @@ class App(tk.Tk):
         super().__init__()
         
         self.title("Casse-brique")
-        self.geometry("1200x900+200+0")
+        self.geometry("1200x900+400+0")
 
         self.__width = 1200
         self.__height = 800
@@ -34,8 +34,12 @@ class App(tk.Tk):
         self.playButton = tk.Button(text="Start Game", command= self.playGame)
         self.playButton.pack()
         
-        self.settingsButton = tk.Button(text="Settings")
-        self.settingsButton.pack()
+        self.rulesButton = tk.Button(text="Rules", command= self.rules_window)
+        self.rulesButton.pack()
+        
+        
+
+
         self.playagain = tk.Button(text="Play Again", command= self.resetGame)
         
         self.quitButton = tk.Button(text="Quit", command=quit)
@@ -50,10 +54,32 @@ class App(tk.Tk):
         self.livesLabel = tk.Label(text="Lives : " + str(self.__lives))
         self.livesLabel.pack()   
 
+    def rules_window(self):
+        # Création d'une nouvelle fenêtre Toplevel
+        set_win = tk.Toplevel(self)
+        set_win.title("Rules")
+        set_win.geometry("400x300+0+0")
+
+        label1 = tk.Label(set_win, text="Here are the rules of the game:")
+        label2 = tk.Label(set_win, text="Use the left and right arrow keys to move the paddle.")
+        label3 = tk.Label(set_win, text="You can also use the mouse to move the paddle.")
+        label4 = tk.Label(set_win, text="Bounce the ball to break all the bricks.")
+        label5 = tk.Label(set_win, text="Don't let the ball fall below the paddle.")
+        label6 = tk.Label(set_win, text="You have 5 lives. Good luck!")
+        for lbl in (label1, label2, label3, label4, label5, label6):
+            lbl.pack(pady=5)
+
+        closeButton = tk.Button(set_win, text="Close", command=set_win.destroy)
+        closeButton.pack()
+
+
+
+
+
+
     def playGame(self):
-        
         self.playButton.destroy()
-        self.settingsButton.destroy()
+        self.rulesButton.destroy()
         
         self.gamespace = tk.Canvas(self, height = self.__height, width = self.__width, bg='black')
         self.gamespace.pack()
