@@ -16,38 +16,45 @@ class App(tk.Tk):
     def __init__(self) :
         
         super().__init__()
-        
+        """Initialisation de la fenêtre principale"""
         self.title("Casse-brique")
-        self.geometry("1200x900+400+0")
-
+        self.geometry("1200x900+400+0") #au format 1200x900
+        """Format du cadre de jeu"""
         self.__width = 1200
         self.__height = 800
-
+        """Initialisation des variables de jeu"""
         self.__lives = 5
         self.__score = 0
         self.__bricks = []
-        
+        """Création des premiers widgets"""
         self.createWidgets() 
    
     def createWidgets(self) :
-        
+        """
+        Création des boutons de la fenêtre principale :
+        - Bouton "Start Game" pour lancer une nouvelle partie
+        - Bouton "Rules" pour afficher les règles du jeu
+        - Bouton "Play Again" pour recommencer une partie
+        - Bouton "Quit" pour quitter le jeu et terminer le programme.
+        """
+
         self.playButton = tk.Button(text="Start Game", command= self.playGame)
         self.playButton.pack()
         
         self.rulesButton = tk.Button(text="Rules", command= self.rules_window)
         self.rulesButton.pack()
         
-        
-
-
         self.playagain = tk.Button(text="Play Again", command= self.resetGame)
         
         self.quitButton = tk.Button(text="Quit", command=quit)
+        
         self.quitButton.pack(side='bottom')
         self.playagain.pack(side='bottom')
         
     def createLabel(self):
-        
+        """
+        Permet d'afficher les valeurs de score et vie en bas de fenêtre
+        """
         self.scoreLabel = tk.Label(text="Score : " + str(self.__score))
         self.scoreLabel.pack()
         
@@ -55,7 +62,7 @@ class App(tk.Tk):
         self.livesLabel.pack()   
 
     def rules_window(self):
-        # Création d'une nouvelle fenêtre Toplevel
+        # Création d'une nouvelle fenêtre Toplevel pour afficher et expliquer les règles
         set_win = tk.Toplevel(self)
         set_win.title("Rules")
         set_win.geometry("400x300+0+0")
@@ -72,12 +79,11 @@ class App(tk.Tk):
         closeButton = tk.Button(set_win, text="Close", command=set_win.destroy)
         closeButton.pack()
 
-
-
-
-
-
     def playGame(self):
+        """
+        Programme d'affichage et exécution du jeu
+        """
+        #On supprime les boutons superflux.
         self.playButton.destroy()
         self.rulesButton.destroy()
         
