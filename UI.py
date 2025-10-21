@@ -6,7 +6,7 @@ Objectif : Créer un systéme fonctionnel pour l'interface utilisateur
 """
 
 import tkinter as tk
-from BOX import Box
+from BoxLife import Box
 from Ball import Ball
 from Paddle import Paddle
 from random import randint
@@ -143,9 +143,3 @@ class App(tk.Tk):
         self.__lives = 5
         self.__score = 0
         self.playGame()  
-        
-        
-        
-
-        
-

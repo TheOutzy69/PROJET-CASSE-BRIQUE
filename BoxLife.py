@@ -8,7 +8,7 @@ Improvements :
     - Créer des sous-classes pour différents types de briques (par exemple, briques résistantes, briques explosives).
 """
 
-class Box:
+class BoxLife:
     
     """
     Permet de créer les briques
