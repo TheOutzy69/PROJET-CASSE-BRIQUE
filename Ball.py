@@ -5,6 +5,7 @@ Date : 07/10/2025 - 21/10/2025
 Objectif : Créer un systéme fonctionnel pour la balle
 """
 import math,random
+import Score_Handler as sh
 
 class Ball:
     
@@ -94,7 +95,7 @@ class Ball:
             if self.__life == 0:
                 
                 self.__canvas.create_text(self.__width/2, self.__height/2, text="Game Over", fill="red", font=("Arial", 50))
-                return
+                return sh.sauvegarder_score(self.__score)
         
         #Rebond en haut
         elif self.__y - self.__rayon + self.__dY < 0 :
@@ -201,7 +202,7 @@ class Ball:
         if self.__score == len(self.__bricks) * 10 :
             
             self.__canvas.create_text(self.__width/2, self.__height/2, text="You Win!", fill="green", font=("Arial", 50))
-            return
+            return sh.sauvegarder_score(self.__score)
         
         
         #Permet d'actualiser la fenêtre apres 20ms
