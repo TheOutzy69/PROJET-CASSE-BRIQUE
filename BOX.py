@@ -26,7 +26,6 @@ class Box:
         self.__x = x
         self.__y = y
         self.__alive = True
-        self.__score = 0
     
     def création(self):
         """
@@ -48,6 +47,4 @@ class Box:
             
             self.__canvas.delete(self.__rectangle)
             self.__alive = False
-            
-        self.__score += 10
     

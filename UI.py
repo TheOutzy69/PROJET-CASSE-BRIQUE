@@ -54,10 +54,11 @@ class App(tk.Tk):
         self.rulesButton.pack()
         
         self.playagain = tk.Button(text="Play Again", command= self.resetGame)
+        self.playagain.config(state=tk.DISABLED)
         
         self.quitButton = tk.Button(text="Quit", command=quit)
-        
         self.quitButton.pack(side='bottom')
+        
         self.playagain.pack(side='bottom')
         
     def createLabel(self) :
@@ -104,6 +105,9 @@ class App(tk.Tk):
         #Supprimer les boutons superflux.
         self.playButton.destroy()
         self.rulesButton.destroy()
+        
+        #Activation de playgame
+        self.playagain.config(state=tk.NORMAL)
         
         #Création de l'espace du jeu
         self.gamespace = tk.Canvas(self, height = self.__height, width = self.__width, bg='black')

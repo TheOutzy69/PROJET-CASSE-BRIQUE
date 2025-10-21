@@ -29,15 +29,20 @@ class Paddle :
 
     def move_left(self, event) :
         #Fonction de déplacement vers la gauche associée au bind de la flèche gauche
-        if event.keysym == 'Left':
-            if self.__x - self.__width/2 > 0 - self.__width/2:
+        
+        if event.keysym == 'Left' :
+            
+            if self.__x - self.__width/2 > 0 - self.__width/2 :
+                
                 self.__canvas.move(self.__id, -20, 0)
                 self.__x -= 20
             
     def move_right(self, event) :
         #Fonction de déplacement vers la droite associée au bind de la flèche droite
-        if event.keysym == 'Right':
-            if self.__x + self.__width/2 < int(self.__canvas['width'])-self.__width/2:
+        if event.keysym == 'Right' :
+            
+            if self.__x + self.__width/2 < int(self.__canvas['width']) - self.__width/2 :
+                
                 self.__canvas.move(self.__id, 20, 0)
                 self.__x += 20
 
@@ -45,7 +50,9 @@ class Paddle :
         #Fonction de déplacement associée au mouvement de la souris
         new_x = self.__x + dx
         canvas_width = int(self.__canvas['width'])
+        
         if 0 <= new_x <= canvas_width - self.__width:
+            
             self.__canvas.move(self.__id, dx, 0)
             self.__x = new_x
 
