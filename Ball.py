@@ -3,9 +3,6 @@ Projet : Casse-briques
 Auteur : Nallet Hugo et Serveaux Tao
 Date : 07/10/2025 - 21/10/2025
 Objectif : Créer un systéme fonctionnel pour la balle
-Improvements :
-    - Régler le problème de la vitesse qui a tendance à varier à chaque lancement de partie.
-    - Ajout de la loi de descartes
 """
 import math,random
 
@@ -26,10 +23,6 @@ class Ball:
         - LivesLabel : Texte permettant d'afficher les vies
         - ScoreLabel : Texte permettant d'afficher le score
     
-    Sortie :
-    
-        - La balle
-    
     """
     def __init__(self,canvas,rayon,color,width,height,speed, paddle, brick,livesLabel, scoreLabel) :
         
@@ -45,7 +38,7 @@ class Ball:
         #Définission de la vitesse de la balle
         self.__angle = random.uniform(0,2*math.pi)
         self.__dX = speed*math.cos(self.__angle)
-        self.__dY = speed*math.cos(self.__angle)
+        self.__dY = speed*math.sin(self.__angle)
         
         self.__id = None
         
