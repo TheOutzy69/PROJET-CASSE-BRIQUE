@@ -134,9 +134,10 @@ class App(tk.Tk):
         #Assignation des touches et mouvements souris.
         self.gamespace.bind_all('<KeyPress-Left>', paddle.move_left)
         self.gamespace.bind_all('<KeyPress-Right>', paddle.move_right)
-        self.gamespace.bind('<Motion>', lambda event: paddle.move(event.x - ((paddle.getPos()[0] + paddle.getPos()[2]) / 2)))
-
-        
+        self.gamespace.bind('<Motion>', lambda event: paddle.move(event.x - ((paddle.getPos()[0] + paddle.getPos()[2]) / 2)))       
+    
+    
+    
     #Fonction pour relancer le jeu
     def resetGame(self) :
         """

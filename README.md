@@ -20,6 +20,3 @@ Bon courage !
 
 
 
-
-#Reported Bugs
-La balle à tendance à ne pas avoir la même vitesse d'une partie à l'autre.
