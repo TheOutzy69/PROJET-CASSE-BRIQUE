@@ -23,6 +23,9 @@ Bon courage !
 
 
 
+Nous avons également ajouté un mode qui permet de jouer au casse-brique avec des briques améliorées.
+
+
 Lien vers le Repository GitHub :
 https://github.com/TheOutzy69/PROJET-CASSE-BRIQUE.git
 

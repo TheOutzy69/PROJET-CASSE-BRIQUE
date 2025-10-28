@@ -10,6 +10,7 @@ from BOX import Box
 from Ball import Ball
 from Paddle import Paddle
 import Score_Handler as sh
+from BoxLife import BoxLife
 
 class App(tk.Tk):
     """
@@ -34,7 +35,8 @@ class App(tk.Tk):
         self.__highest = sh.get_highest()
         self.__average = sh.get_average()
         self.__bricks = []
-        
+        self.__bricksLife = 1
+
         """Création des premiers widgets"""
         self.createWidgets() 
    
@@ -46,10 +48,24 @@ class App(tk.Tk):
         - Bouton "Play Again" pour recommencer une partie
         - Bouton "Quit" pour quitter le jeu et terminer le programme.
         """
+        
+
 
         self.playButton = tk.Button(text="Start Game", command= self.playGame)
         self.playButton.pack()
         
+        self.playButton2 = tk.Button(text="Start BoxLife Mode", command= self.playGame2)
+        self.playButton2.pack()
+
+        self.BrickLabel = tk.Label(text="Choose the life of the bricks (Max 5) (per default at 1) :")
+        self.BrickLabel.pack()
+
+        self.entry = tk.Entry(text='Nombre de vie pour les briques (Max 5)')
+        self.entry.pack()
+        
+        self.buttonChooseLives = tk.Button(text="Confirmer",command=self.read)
+        self.buttonChooseLives.pack()
+
         self.rulesButton = tk.Button(text="Rules", command= self.rules_window)
         self.rulesButton.pack()
         
@@ -104,8 +120,11 @@ class App(tk.Tk):
         """
         #Supprimer les boutons superflux.
         self.playButton.destroy()
+        self.playButton2.destroy()
         self.rulesButton.destroy()
-        
+        self.buttonChooseLives.destroy()
+        self.entry.destroy()
+        self.BrickLabel.destroy()
         #Activation de playgame
         self.playagain.config(state=tk.NORMAL)
         
@@ -136,7 +155,52 @@ class App(tk.Tk):
         self.gamespace.bind_all('<KeyPress-Right>', paddle.move_right)
         self.gamespace.bind('<Motion>', lambda event: paddle.move(event.x - ((paddle.getPos()[0] + paddle.getPos()[2]) / 2)))       
     
-    
+    def playGame2(self) :
+        """
+        Fonction associée au bouton -Start BoxLife Mode-
+        Programme d'affichage et exécution du jeu avec les briques à vie
+        Il s'agit de la même chose que playGame mais avec des utilisations de classes différentes
+        pour les briques.
+        Bonnes pratiques peu respéctées pour la redondance du code, mais nous souhaitions cette feature présente avant la deadline.
+        """
+        #Supprimer les boutons superflux.
+        self.playButton.destroy()
+        self.playButton2.destroy()
+        self.rulesButton.destroy()
+        self.buttonChooseLives.destroy()
+        self.entry.destroy()
+        self.BrickLabel.destroy()
+        
+        #Création de l'espace du jeu
+        self.gamespace = tk.Canvas(self, height = self.__height, width = self.__width, bg='black')
+        self.gamespace.pack()
+        self.createLabel()
+        
+        #Création et organisation des briques
+        #Ici une zone de 5*10 briques de 120*50 pixels
+        
+        colors = ['red','orange','yellow','green','blue']
+        
+        for j in range(5) :
+            for i in range(10) :
+                Boite = BoxLife(self.gamespace, 120*i, 50*j,self.__bricksLife,colors)
+                Boite.création()
+                self.__bricks.append(Boite)
+                
+        #Création de la raquette
+        paddle = Paddle(self.gamespace, 550, 750)
+        paddle.creation()
+        
+        #Création de la balle et lancement des déplacements. 
+        ball = Ball(self.gamespace, 10, 'white', self.__width, self.__height, 10, paddle,
+                    self.__bricks,self.livesLabel,self.scoreLabel)
+        ball.creation()
+        ball.move()
+        
+        #Assignation des touches et mouvements souris.
+        self.gamespace.bind_all('<KeyPress-Left>', paddle.move_left)
+        self.gamespace.bind_all('<KeyPress-Right>', paddle.move_right)
+        self.gamespace.bind('<Motion>', lambda event: paddle.move(event.x - ((paddle.getPos()[0] + paddle.getPos()[2]) / 2)))
     
     #Fonction pour relancer le jeu
     def resetGame(self) :
@@ -158,6 +222,43 @@ class App(tk.Tk):
         
         
         
+    def read(self):
+        
+        """
+        Cette fonction permet de lire ce qu'il y a dans Entry et d'assigner cette valeur à
+        la variable associée à la vie des briques.
+        """
+        
+        value = self.entry.get()
+        
+        # Convertion de la valeur en Entier
+        try :
+            value = int(value)
+        except :
+            pass
+        
+        # Verification de la transformation
+        if isinstance(value,int):
+            
+            if value > 5 or value == 0:
+                
+                # Affichage d'un pop-up pour notifier qu'il faut que le nombre soit
+                #supérieur à 5 et différent de 0
+                popUp = tk.Toplevel(self)
+                popUp.geometry("400x300+0+0")
+                label = tk.Label(popUp, text="You can't put a number above 5 or 0 !")
+                label.pack()
 
+            else :
+                
+                self.__bricksLife = value
+        
+        else :
+            
+            # Affichage d'un pop-up pour notifier qu'il faut l'écrire en chiffre
+            popUp = tk.Toplevel(self)
+            popUp.geometry("400x300+0+0")
+            label = tk.Label(popUp, text="You need to put a number !")
+            label.pack()
         
 
