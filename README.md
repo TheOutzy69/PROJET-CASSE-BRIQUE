@@ -25,6 +25,11 @@ Bon courage !
 
 Nous avons également ajouté un mode qui permet de jouer au casse-brique avec des briques améliorées.
 
+EXECUTEZ LE JEU VIA LE FICHIER "main".
+
+Tips : 
+Les fichiers CSV "highest" et "scores" sont vierges dans le build récupérable sur Github et s'actualisent tout seuls.
+Vous pouvez effacer leurs contenus si vous souhaitez effacer votre historique des derniers scores.
 
 Lien vers le Repository GitHub :
 https://github.com/TheOutzy69/PROJET-CASSE-BRIQUE.git

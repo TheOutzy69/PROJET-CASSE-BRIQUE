@@ -44,9 +44,13 @@ class App(tk.Tk):
         """
         Création des boutons de la fenêtre principale :
         - Bouton "Start Game" pour lancer une nouvelle partie
+        - Bouton "Start BoxLife Mode" pour lancer une nouvelle partie avec les briques à vie
+        - Entrée pour choisir le nombre de vie des briques dans le mode BoxLife
+        - Bouton "Confirmer" pour valider le nombre de vie des briques
         - Bouton "Rules" pour afficher les règles du jeu
-        - Bouton "Play Again" pour recommencer une partie
+        - Bouton "Play Again" pour recommencer une partie (Fonctionne uniquement pour le jeu de base)
         - Bouton "Quit" pour quitter le jeu et terminer le programme.
+
         """
         
 
