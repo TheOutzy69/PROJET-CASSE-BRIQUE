@@ -6,10 +6,9 @@ Objectif : Créer un systéme fonctionnel pour l'interface utilisateur
 """
 
 import tkinter as tk
-from BoxLife import Box
+from BoxLife import BoxLife
 from Ball import Ball
 from Paddle import Paddle
-from random import randint
 
 
 class App(tk.Tk):
@@ -32,6 +31,7 @@ class App(tk.Tk):
         """Initialisation des variables de jeu"""
         self.__lives = 5
         self.__score = 0
+        self.__bricksLife = 1
         self.__bricks = []
         
         """Création des premiers widgets"""
@@ -45,6 +45,12 @@ class App(tk.Tk):
         - Bouton "Play Again" pour recommencer une partie
         - Bouton "Quit" pour quitter le jeu et terminer le programme.
         """
+        
+        self.entry = tk.Entry(textvariable='Nombre de vie (Max 5)')
+        self.entry.pack()
+        
+        self.buttonChooseLives = tk.Button(text="Confirmer",command=self.read)
+        self.buttonChooseLives.pack()
 
         self.playButton = tk.Button(text="Start Game", command= self.playGame)
         self.playButton.pack()
@@ -97,6 +103,8 @@ class App(tk.Tk):
         #Supprimer les boutons superflux.
         self.playButton.destroy()
         self.rulesButton.destroy()
+        self.buttonChooseLives.destroy()
+        self.entry.destroy()
         
         #Création de l'espace du jeu
         self.gamespace = tk.Canvas(self, height = self.__height, width = self.__width, bg='black')
@@ -106,12 +114,11 @@ class App(tk.Tk):
         #Création et organisation des briques
         #Ici une zone de 5*10 briques de 120*50 pixels
         
-        colors = ['red','orange','blue']
+        colors = ['red','orange','yellow','green','blue']
         
         for j in range(5) :
             for i in range(10) :
-                life = randint(1,3)
-                Boite = Box(self.gamespace, 120*i, 50*j,life,colors)
+                Boite = BoxLife(self.gamespace, 120*i, 50*j,self.__bricksLife,colors)
                 Boite.création()
                 self.__bricks.append(Boite)
                 
@@ -120,7 +127,8 @@ class App(tk.Tk):
         paddle.creation()
         
         #Création de la balle et lancement des déplacements. 
-        ball = Ball(self.gamespace, 10, 'white', self.__width, self.__height, 10, paddle, self.__bricks,self.livesLabel,self.scoreLabel)
+        ball = Ball(self.gamespace, 10, 'white', self.__width, self.__height, 10, paddle,
+                    self.__bricks,self.livesLabel,self.scoreLabel)
         ball.creation()
         ball.move()
         
@@ -142,4 +150,43 @@ class App(tk.Tk):
         self.__bricks.clear()
         self.__lives = 5
         self.__score = 0
-        self.playGame()  
+        self.playGame()
+    
+    def read(self):
+        
+        """
+        Cette fonction permet de lire ce qu'il y a dans Entry et d'assigner cette valeur à
+        la variable associée à la vie des briques.
+        """
+        
+        value = self.entry.get()
+        
+        # Convertion de la valeur en Entier
+        try :
+            value = int(value)
+        except :
+            pass
+        
+        # Verification de la transformation
+        if isinstance(value,int):
+            
+            if value > 5 or value == 0:
+                
+                # Affichage d'un pop-up pour notifier qu'il faut que le nombre soit
+                #supérieur à 5 et différent de 0
+                popUp = tk.Toplevel(self)
+                popUp.geometry("400x300+0+0")
+                label = tk.Label(popUp, text="You can't put a number above 5 or 0 !")
+                label.pack()
+
+            else :
+                
+                self.__bricksLife = value
+        
+        else :
+            
+            # Affichage d'un pop-up pour notifier qu'il faut l'écrire en chiffre
+            popUp = tk.Toplevel(self)
+            popUp.geometry("400x300+0+0")
+            label = tk.Label(popUp, text="You need to put a number !")
+            label.pack()
